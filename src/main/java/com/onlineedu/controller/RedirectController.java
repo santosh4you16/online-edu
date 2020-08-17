@@ -11,5 +11,15 @@ public class RedirectController {
   public String getHome() {
     return "index";
   }
+  
+  @RequestMapping(value = "/login.do", method = RequestMethod.GET)
+  public String getLogin() {
+    return "login";
+  }
+  
+  @RequestMapping(value = "/userProfile", method = RequestMethod.GET)
+  public String getUserProfile() {
+    return "user/userProfile";
+  }
 
 }
