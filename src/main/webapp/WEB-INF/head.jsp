@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-grid.css">
 <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-reboot.css">
 
-<script rel="text/javascript">
+<script type="text/javascript">
 $.fn.serializeObject = function() {
 	var o = {};
 	var a = this.serializeArray();

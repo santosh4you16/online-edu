@@ -12,15 +12,17 @@ public class UserService implements IUserService {
   private UserRepository userRep;
 
   @Override
-  public void registeruser(UserModel user) {
+  public UserModel registeruser(UserModel user) {
+    UserModel savedUser = null;
     try {
-      UserModel savedUser = userRep.save(user);
+      savedUser = userRep.save(user);
       if (savedUser == null) {
         throw new Exception("User not saved");
       }
     } catch (Exception e) {
       e.printStackTrace();
     }
+    return savedUser;
   }
 
 }

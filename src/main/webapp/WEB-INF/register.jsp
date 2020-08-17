@@ -34,7 +34,7 @@
 	<div class="hint-text">Already have an account? <a href="/login.do">Login here</a></div>
 </div>
 
-<script rel="text/javascript">
+<script type="text/javascript">
 $(document).ready(function(){
 	
 });
@@ -48,6 +48,7 @@ var register = function(){debugger
 		data:JSON.stringify(registerData),
 		success : function(response) {
 			alert("User saved Successfully!")
+			window.location.href = "/login.do";
 		}
 	});
 }
