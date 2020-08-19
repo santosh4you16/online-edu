@@ -7,4 +7,5 @@ import com.onlineedu.model.RoleModel;
 @Repository
 public interface RoleRepository extends JpaRepository<RoleModel, Long> {
 
+    public RoleModel findById(long id);
 }

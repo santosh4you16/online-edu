@@ -16,23 +16,23 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-  @Autowired
-  private UserDetailsService userDetailsService;
+    @Autowired
+    private UserDetailsService userDetailsService;
 
-  @Override
-  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    auth.userDetailsService(userDetailsService).passwordEncoder(encodePwd());
-  }
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService).passwordEncoder(encodePwd());
+    }
 
-  @Override
-  protected void configure(HttpSecurity http) throws Exception {
-    http.csrf().disable();
-    http.authorizeRequests().antMatchers("/user").authenticated().anyRequest().permitAll().and()
-        .formLogin().loginPage("/login.do").defaultSuccessUrl("/userProfile").permitAll();
-  }
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable();
+        http.authorizeRequests().antMatchers("/user").authenticated().anyRequest().permitAll().and().formLogin()
+            .loginPage("/login.do").defaultSuccessUrl("/userProfile").permitAll();
+    }
 
-  @Bean
-  public BCryptPasswordEncoder encodePwd() {
-    return new BCryptPasswordEncoder();
-  }
+    @Bean
+    public BCryptPasswordEncoder encodePwd() {
+        return new BCryptPasswordEncoder();
+    }
 }

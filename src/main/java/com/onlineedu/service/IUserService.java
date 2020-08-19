@@ -4,5 +4,5 @@ import com.onlineedu.model.UserModel;
 
 public interface IUserService {
 
-  public UserModel registeruser(UserModel user);
+    public UserModel registeruser(UserModel user);
 }

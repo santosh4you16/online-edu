@@ -8,21 +8,21 @@ import com.onlineedu.repository.UserRepository;
 @Service
 public class UserService implements IUserService {
 
-  @Autowired
-  private UserRepository userRep;
+    @Autowired
+    private UserRepository userRep;
 
-  @Override
-  public UserModel registeruser(UserModel user) {
-    UserModel savedUser = null;
-    try {
-      savedUser = userRep.save(user);
-      if (savedUser == null) {
-        throw new Exception("User not saved");
-      }
-    } catch (Exception e) {
-      e.printStackTrace();
+    @Override
+    public UserModel registeruser(UserModel user) {
+        UserModel savedUser = null;
+        try {
+            savedUser = userRep.save(user);
+            if (savedUser == null) {
+                throw new Exception("User not saved");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return savedUser;
     }
-    return savedUser;
-  }
 
 }
