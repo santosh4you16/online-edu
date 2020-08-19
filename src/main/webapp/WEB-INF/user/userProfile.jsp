@@ -1,6 +1,10 @@
+<%@page import="com.sun.xml.bind.v2.runtime.unmarshaller.XsiNilLoader.Array"%>
+<%@page import="java.util.Arrays"%>
+<%@page import="java.util.Set"%>
 <%@ page import="org.springframework.security.core.context.SecurityContext" %>
 <%@ page import="org.springframework.security.core.Authentication" %>
 <%@ page import="com.onlineedu.model.UserModel" %>
+<%@ page import="com.onlineedu.model.RoleModel" %>
 <%@page import="com.onlineedu.service.CustomUserDetails"%>
 
 <jsp:include page="../navbar/usernavbar.jsp"></jsp:include>
@@ -27,7 +31,13 @@ if( user != null ){
                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
                     <div class="mt-3">
                       <h4><%= userFullName  %></h4>
-                      <p class="text-secondary mb-1">Java Developer</p>
+                      <p class="text-secondary mb-1">
+                      <% Set<RoleModel> roles = user.getRoles(); 
+                      	 for( RoleModel role : roles){
+                      	     out.println(role.getRole());
+                      	 }
+                      %>
+                      </p>
                       <p class="text-muted font-size-sm">India</p>
                       <button class="btn btn-primary">Follow</button>
                       <button class="btn btn-outline-primary">Message</button>
