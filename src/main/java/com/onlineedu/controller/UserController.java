@@ -1,17 +1,19 @@
 package com.onlineedu.controller;
 
+import java.io.File;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -72,20 +74,32 @@ public class UserController extends AbstractController {
     @PostMapping("/uploadFile.do")
     public void uploadFile(@RequestParam("filename") MultipartFile file, HttpServletResponse response,
         HttpServletRequest request) {
-        SecurityContext ctx=(SecurityContext)request.getSession().getAttribute("SPRING_SECURITY_CONTEXT");
-        Authentication auth=ctx.getAuthentication();
         try {
             if (file.isEmpty()) {
                 throw new Exception("File is Empty");
             }
-            
-            boolean isUploaded = fileUploadService.uploadFile(file, FILE_PATH, auth.getName());
+            boolean isUploaded = fileUploadService.uploadFile(file, FILE_PATH, getUserContext(request).getName());
             if (isUploaded) {
                 generateJson(response, "file SuccessFullyUploaded");
             } else {
-                throw new Exception("Something went wrong");    
+                throw new Exception("Something went wrong");
             }
 
+        } catch (Exception e) {
+            e.printStackTrace();
+            generateJsonError(response, e.getMessage());
+        }
+    }
+
+    @GetMapping("/getUserFiles.do")
+    public void getUerFiles(HttpServletResponse response, HttpServletRequest request) {
+        try {
+            List<File> fileList = fileUploadService.getUserFiles(FILE_PATH, getUserContext(request).getName());
+            if (fileList.isEmpty() || fileList == null) {
+                throw new Exception("No record found");
+            }
+            List<String> fileNames = fileList.stream().map(file -> file.getName()).collect(Collectors.toList());
+            generateJson(response, fileNames);
         } catch (Exception e) {
             e.printStackTrace();
             generateJsonError(response, e.getMessage());

@@ -5,7 +5,11 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -63,6 +67,17 @@ public abstract class AbstractController {
             response.getWriter().close();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+    
+    public Authentication getUserContext(HttpServletRequest request) {
+        try {
+            SecurityContext ctx = (SecurityContext) request.getSession().getAttribute("SPRING_SECURITY_CONTEXT");
+            Authentication auth = ctx.getAuthentication();
+            return auth;
+        }catch(Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 
