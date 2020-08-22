@@ -19,7 +19,7 @@ if( user != null ){
   userFullName = user.getFirstName()+" "+user.getLastName();
 }
 %>
-
+<div class="bgbody">
 <div class="container">
     <div class="main-body">
     
@@ -41,6 +41,10 @@ if( user != null ){
                       <p class="text-muted font-size-sm">India</p>
                       <button class="btn btn-primary">Follow</button>
                       <button class="btn btn-outline-primary">Message</button>
+                      <form enctype="multipart/form-data" id="fileUploadForm">
+						  <input class="btn btn-primary" type="file" id="myFile" name="filename">
+						  <a class="btn btn-primary" href="javascript:uploadFile()">Upload</a>
+					  </form>
                     </div>
                   </div>
                 </div>
@@ -155,3 +159,32 @@ if( user != null ){
           </div>
         </div>
     </div>
+</div>
+
+<script type="text/javascript">
+var uploadFile = function(){
+	 var form = $('#fileUploadForm')[0];
+	 var data = new FormData(form);
+	 $.ajax({
+	        type: "POST",
+	        enctype: 'multipart/form-data',
+	        url: "/uploadFile.do",
+	        data: data,
+	        processData: false, //prevent jQuery from automatically transforming the data into a query string
+	        contentType: false,
+	        cache: false,
+	        success: function (data) {
+				if(data.isSuccess){
+					alert("uploaded successfully");
+				}else{
+					alert(data.error);
+				}
+	        },
+	        error: function (e) {
+
+	         alert(e.error);
+
+	        }
+	    });
+}
+</script>

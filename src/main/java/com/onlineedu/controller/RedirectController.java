@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class RedirectController {
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/registerUser", method = RequestMethod.GET)
     public String getHome() {
-        return "index";
+        return "register";
     }
 
     @RequestMapping(value = "/login.do", method = RequestMethod.GET)
@@ -21,5 +21,6 @@ public class RedirectController {
     public String getUserProfile() {
         return "user/userProfile";
     }
-
+    
+   
 }

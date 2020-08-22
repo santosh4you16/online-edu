@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.css">
 <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-grid.css">
 <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-reboot.css">
-
+<link rel="stylesheet" href="css/common.css">
 <script type="text/javascript">
 $.fn.serializeObject = function() {
 	var o = {};

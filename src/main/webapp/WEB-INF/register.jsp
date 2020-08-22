@@ -1,5 +1,5 @@
 <%@page import="com.onlineedu.enums.RolesEnum"%>
-<link rel="stylesheet" href="css/common.css">
+<jsp:include page="head.jsp"></jsp:include>
 <link rel="stylesheet" href="css/signup.css">
 <!-- SignUP Form -->
 <div class="signup-form">

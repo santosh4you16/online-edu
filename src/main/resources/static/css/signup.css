@@ -3,8 +3,11 @@ body {
 	background: url("/assets/images/back.jpg");
 	/* Full height */
 	height: 100%;
-	/* Center and scale the image nicely */ background-position : center;
-	background-repeat : no-repeat; background-size : cover;
+	backdrop-filter: blur(8px);
+	/* Center and scale the image nicely */
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
 	font-family: 'Roboto', sans-serif;
 	background-position: center;
 	background-repeat: no-repeat;
