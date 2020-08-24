@@ -65,6 +65,7 @@
 	</form>
 	<div class="hint-text">
 		Already have an account? <a href="/login.do">Login here</a>
+		<br><a href="/">Home</a>
 	</div>
 </div>
 

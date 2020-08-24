@@ -17,7 +17,8 @@
             <button type="submit" class="btn btn-primary btn-lg">Log In</button>
         </div>
     </form>
-    <div class="hint-text">Don't have an account? <a href="/registerUser">Register here</a></div>
+    <div class="hint-text">Don't have an account? <a href="/registerUser">Register here</a><br><a href="/">Home</a></div>
+    
 </div>
 
 <script type="text/javascript">
