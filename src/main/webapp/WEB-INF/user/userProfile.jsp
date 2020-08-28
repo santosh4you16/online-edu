@@ -36,7 +36,7 @@ if( user != null ){
                       	 for( RoleModel role : roles){
                       	     out.println(role.getRole());
                       	 }
-                      %>
+                      %><br>${path}
                       </p>
                       <p class="text-muted font-size-sm">India</p>
                       <button class="btn btn-primary">Follow</button>
@@ -151,7 +151,7 @@ var uploadFile = function(){
 	 $.ajax({
 	        type: "POST",
 	        enctype: 'multipart/form-data',
-	        url: "/uploadFile.do",
+	        url: "${path}/uploadFile.do",
 	        data: data,
 	        processData: false, //prevent jQuery from automatically transforming the data into a query string
 	        contentType: false,
@@ -175,7 +175,7 @@ var uploadFile = function(){
 var getUserFiles = function(){
 	 $.ajax({
 	        type: "GET",
-	        url: "/getUserFiles.do",
+	        url: "${path}/getUserFiles.do",
 	        success: function (data) {
 				if(data.isSuccess){
 					$.each(data.data,function(ind, val){

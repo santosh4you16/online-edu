@@ -17,7 +17,7 @@
             <button type="submit" class="btn btn-primary btn-lg">Log In</button>
         </div>
     </form>
-    <div class="hint-text">Don't have an account? <a href="/registerUser">Register here</a><br><a href="/">Home</a></div>
+    <div class="hint-text">Don't have an account? <a href="${path}/registerUser">Register here</a><br><a href="${path}/">Home</a></div>
     
 </div>
 
@@ -27,7 +27,7 @@ var register = function(){debugger
 	loginData = $("#loginForm").serializeObject();
 	$.ajax({
 		type : "POST",
-		url : "/login",
+		url : "${path}/login",
 		contentType : "application/json",
 		data:JSON.stringify(registerData),
 		success : function(response) {

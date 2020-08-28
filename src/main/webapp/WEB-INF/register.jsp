@@ -64,8 +64,8 @@
 		</div>
 	</form>
 	<div class="hint-text">
-		Already have an account? <a href="/login.do">Login here</a>
-		<br><a href="/">Home</a>
+		Already have an account? <a href="${path}/login.do">Login here</a>
+		<br><a href="${path}/">Home</a>
 	</div>
 </div>
 
@@ -91,13 +91,13 @@ var register = function(){
 	registerData = $("#signupForm").serializeObject();
 	$.ajax({
 		type : "POST",
-		url : "/register.do",
+		url : "${path}/register.do",
 		contentType : "application/json",
 		data:JSON.stringify(registerData),
 		success : function(response) {
 			if(response.isSuccess){
 				alert("User saved Successfully!");
-				window.location.href = "/login.do";
+				window.location.href = "${path}/login.do";
 			}else{
 				$("#errorText p").text(response.error);
 				$("#errorText").removeClass("hidden");

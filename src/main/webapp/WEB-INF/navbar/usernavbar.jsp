@@ -36,7 +36,7 @@ UserModel user = userDetails.getUserModel();
           <a class="nav-link" href="#">Contact</a>
         </li>
          <li class="nav-item">
-          <a class="nav-link" href="/logout">Log Out</a>
+          <a class="nav-link" href="${path}/logout">Log Out</a>
         </li>
       </ul>
     </div>

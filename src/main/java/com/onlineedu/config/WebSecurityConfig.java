@@ -11,6 +11,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.onlineedu.enums.RolesEnum;
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -27,8 +29,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
-        http.authorizeRequests().antMatchers("/user").authenticated().anyRequest().permitAll().and().formLogin()
-            .loginPage("/login.do").defaultSuccessUrl("/userProfile").permitAll();
+        http.authorizeRequests()
+        .antMatchers("/admin").hasRole(RolesEnum.ADMIN.getEnumName())
+        .antMatchers("/user").hasRole(RolesEnum.USER.getEnumName())
+        .antMatchers("/teacher").hasRole(RolesEnum.TEACHER.getEnumName())
+        .antMatchers("/").permitAll()
+        .and()
+        .formLogin().loginPage("/login.do")
+        .defaultSuccessUrl("/userProfile")
+        .permitAll();
     }
 
     @Bean
