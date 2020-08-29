@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.onlineedu.model.Question;
 import com.onlineedu.model.RoleModel;
+import com.onlineedu.model.TestType;
 import com.onlineedu.model.UserModel;
 import com.onlineedu.repository.RoleRepository;
 import com.onlineedu.service.IFileUploadService;
@@ -100,6 +102,34 @@ public class UserController extends AbstractController {
             }
             List<String> fileNames = fileList.stream().map(file -> file.getName()).collect(Collectors.toList());
             generateJson(response, fileNames);
+        } catch (Exception e) {
+            e.printStackTrace();
+            generateJsonError(response, e.getMessage());
+        }
+    }
+
+    @PostMapping("/saverQuestion.do")
+    public void saveQuestion(@RequestBody Question question, HttpServletRequest request, HttpServletResponse response) {
+        try {
+            boolean isSaved = userService.saveQuestion(question);
+            if (!isSaved) {
+                throw new Exception("Question not saved");
+            }
+            generateJson(response, "Question Saved Successfully!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            generateJsonError(response, e.getMessage());
+        }
+    }
+
+    @PostMapping("/saveTestType.do")
+    public void saveTestType(@RequestBody TestType testType, HttpServletRequest request, HttpServletResponse response) {
+        try {
+            boolean isSaved = userService.saveTestType(testType);
+            if (!isSaved) {
+                throw new Exception("Test type not saved XXX");
+            }
+            generateJson(response, "Test type saved Successfully!");
         } catch (Exception e) {
             e.printStackTrace();
             generateJsonError(response, e.getMessage());

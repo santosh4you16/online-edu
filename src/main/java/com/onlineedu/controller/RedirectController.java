@@ -22,5 +22,15 @@ public class RedirectController {
         return "user/userProfile";
     }
     
+    @RequestMapping(value = "/createQuestion", method = RequestMethod.GET)
+    public String getCreateQuestPage() {
+        return "user/createQuestion";
+    }
+    
+    @RequestMapping(value = "/createTestType", method = RequestMethod.GET)
+    public String getCreateTestTypePage() {
+        return "user/createTestType";
+    }
+    
    
 }
