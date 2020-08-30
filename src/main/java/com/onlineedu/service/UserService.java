@@ -1,5 +1,8 @@
 package com.onlineedu.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,6 +42,8 @@ public class UserService implements IUserService {
     @Override
     public boolean saveQuestion(Question question) {
         try {
+            TestType ttype = testTypeRepository.findById(question.getTestTypeId()).get();
+            question.setTestType(ttype);
             questionRepository.saveAndFlush(question);
             return true;
         } catch (Exception e) {
@@ -55,6 +60,21 @@ public class UserService implements IUserService {
         } catch (Exception e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    @Override
+    public List<TestType> getTestType() {
+        List<TestType> testTypeList = new ArrayList<>();
+        try {
+            testTypeList = testTypeRepository.findAll();
+            if (testTypeList.isEmpty() || testTypeList == null) {
+                throw new Exception("No record Found");
+            }
+            return testTypeList;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 

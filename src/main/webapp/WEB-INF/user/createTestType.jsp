@@ -31,7 +31,7 @@ var saveTestType = function(){
 		url : "${path}/saveTestType.do",
 		contentType : "application/json",
 		data:JSON.stringify(formData),
-		success : function(response) {debugger
+		success : function(response) {
 			if(response.isSuccess){
 				alert("Saved Successfully!");
 			}else{

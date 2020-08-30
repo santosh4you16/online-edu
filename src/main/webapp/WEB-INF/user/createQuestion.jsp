@@ -3,24 +3,34 @@
 <div class="container">
 <form id="questionForm">
 	<div class="form-group">
+	    <label for="testTypeId">Select Test Type:</label>
+		<select id="testTypeId" name="testTypeId" class="form-control">
+		  <option value=0>--SELECT TEST TYPE--</option>
+		</select>
+	</div>
+	<div class="form-group">
+	  <label for="mark">Enter Mark:</label>
+	  <input type="number" class="form-control" id="mark" name="mark" placeholder="Enter Mark for question">
+	</div>
+	<div class="form-group">
 	  <label for="question">Enter Question:</label>
 	  <textarea class="form-control rounded-10" id="question"  name="question" rows="6"></textarea>
 	</div>
    <div class="form-group">
     <label for="optionA">Option A:</label>
-    <input type="text" class="form-control" id="optionA"  placeholder="OPTION A">
+    <input type="text" class="form-control" id="optionA" name="optionA" placeholder="OPTION A">
   </div> 
    <div class="form-group">
     <label for="optionB">Option B:</label>
-    <input type="text" class="form-control" id="optionB"  placeholder="OPTION B">
+    <input type="text" class="form-control" id="optionB" name="optionB" placeholder="OPTION B">
   </div>   
   <div class="form-group">
     <label for="optionC">Option C:</label>
-    <input type="text" class="form-control" id="optionC"  placeholder="OPTION C">
+    <input type="text" class="form-control" id="optionC" name="optionC" placeholder="OPTION C">
   </div>   
   <div class="form-group">
     <label for="optionD">Option D:</label>
-    <input type="text" class="form-control" id="optionD"  placeholder="OPTION D">
+    <input type="text" class="form-control" id="optionD" name="optionD" placeholder="OPTION D">
   </div> 
   <!-- Correct Answer  -->
   <div class="form-group">
@@ -50,9 +60,33 @@
 
 <script type="text/javascript">
 var formData = {};
+$(document).ready(function(){
+	getTestType();
+});
 
-var saveQuestion = function(){
-	formdata = $("#questionForm").serializeObject();
+var getTestType = function(){
+	$.ajax({
+		type : "GET",
+		url : "${path}/getTestType.do",
+		contentType : "application/json",
+		success : function(response) {
+			if(response.isSuccess){
+				$.each(response.data,function(ind, val){
+					$("#testTypeId").append($("<option></option>").attr("value",val.id).text(val.testType));						
+				});
+			}else{
+				alert("Something went wrong!");
+			}
+		},
+		error : function(res){
+			alert("Something went wrong!");
+			
+		}
+	});	
+};
+
+var saveQuestion = function(){debugger
+	formData = $("#questionForm").serializeObject();
 	$.ajax({
 		type : "POST",
 		url : "${path}/saveQuestion.do",

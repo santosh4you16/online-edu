@@ -108,9 +108,12 @@ public class UserController extends AbstractController {
         }
     }
 
-    @PostMapping("/saverQuestion.do")
+    @PostMapping("/saveQuestion.do")
     public void saveQuestion(@RequestBody Question question, HttpServletRequest request, HttpServletResponse response) {
         try {
+            if (question.getTestTypeId() <= 0) {
+                throw new Exception("test type id cannot be zero");
+            }
             boolean isSaved = userService.saveQuestion(question);
             if (!isSaved) {
                 throw new Exception("Question not saved");
@@ -130,6 +133,20 @@ public class UserController extends AbstractController {
                 throw new Exception("Test type not saved XXX");
             }
             generateJson(response, "Test type saved Successfully!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            generateJsonError(response, e.getMessage());
+        }
+    }
+
+    @GetMapping("/getTestType.do")
+    public void getTaskType(HttpServletResponse response, HttpServletRequest request) {
+        try {
+            List<TestType> testTypeList = userService.getTestType();
+            if (testTypeList == null) {
+                throw new Exception("No record Found!");
+            }
+            generateJson(response, testTypeList);
         } catch (Exception e) {
             e.printStackTrace();
             generateJsonError(response, e.getMessage());

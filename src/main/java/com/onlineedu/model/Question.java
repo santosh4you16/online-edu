@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "questions")
@@ -23,6 +24,17 @@ public class Question {
     private int mark;
     @ManyToOne
     private TestType testType;
+
+    @Transient
+    private long testTypeId;
+
+    public long getTestTypeId() {
+        return testTypeId;
+    }
+
+    public void setTestTypeId(long testTypeId) {
+        this.testTypeId = testTypeId;
+    }
 
     public long getId() {
         return id;
