@@ -102,13 +102,10 @@ if( user != null ){
               <div class="row gutters-sm">
                 <div class="col-sm-6 mb-3">
                   <div class="card h-100">
-                    <div class="card-body">
-                    <div>
-                    	<a class="btn btn-primary" href="${path}/createQuestion"></a>
-                    	<a class="btn btn-success" href="${path}/createTestType"></a>
-                    </div>
+                    	<a class="btn btn-primary mb-2" href="${path}/createQuestion"></a><br>
+                    	<a class="btn btn-success mb-2" href="${path}/createTestType"></a>
+                   </div>
                   </div>
-                </div>
                 <div class="col-sm-6 mb-3">
                   <div class="card h-100">
                   <ul id="fileList" >

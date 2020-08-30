@@ -4,7 +4,7 @@
 <form id="testTypeForm">
    <div class="form-group">
     <label for="testType">Enter Test Type:</label>
-    <input type="text" class="form-control" id="testType" name="testType"  placeholder="type Exam Type here">
+    <input type="text" class="form-control" id="testType" name="testType"  placeholder="Exam Type">
   </div> 
   <div class="form-group">
     <label for="examScore">Exam Score:</label>
@@ -12,7 +12,7 @@
   </div>   
   <div class="form-group">
     <label for="passingScore">Passing Score:</label>
-    <input type="text" class="form-control" id="passingScore" name="passingScore"  placeholder="passing Marks">
+    <input type="text" class="form-control" id="passingScore" name="passingScore"  placeholder="Passing Marks">
   </div>     
   
   <div class="form-group">
