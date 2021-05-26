@@ -19,11 +19,23 @@
   	<button onclick="saveTestType()" class="btn btn-success">Add Question</button>
   </div>
 </form>
+<hr>
+	<!-- <table class="lsDataTabl" id="testType" name="testType" cellspacing="0" cellpadding="0" border="1">
+		<thead>
+			<tr>
+				<th width="10%">sa</th>
+				<th width="75%">ss</th>
+				<th width="15%">ss</th>
+			</tr>
+		</thead>
+	</table> -->
 </div>
 
 <script type="text/javascript">
 var formData ={};
-
+$(document).ready(function(){
+	getTestType();
+});
 var saveTestType = function(){
 	formData = $("#testTypeForm").serializeObject();
 	$.ajax({
@@ -44,4 +56,45 @@ var saveTestType = function(){
 		}
 	});
 };
+
+var getTestType = function(){
+	$.ajax({
+		type : "GET",
+		url : "${path}/getTestType.do",
+		contentType : "application/json",
+		success : function(response) {
+			if(response.isSuccess){
+				renderTestType(response.data)
+			}else{
+				alert("Something went wrong!");
+			}
+		},
+		error : function(res){
+			alert("Something went wrong!");
+			
+		}
+	});	
+};
+
+/* var renderTestType = function(responseJson)
+{
+	noteTab = $JQ("#testType").dataTable( {
+		"bAutoWidth": false			
+		,"bPaginate": true
+		, "sDom": '<"top"<"clear">>rt<"bottom"lip<"clear">>'
+		, "bFilter": true
+		, "bServerSide": false
+		, "aaSorting": []
+		, "aaData":responseJson.data
+		, "aoColumns": [
+			  { mData: 'creationDateS', sWidth: "51px;", "iDataSort":8 }
+			, { mData: 'noteText', sWidth: "121px;" }
+			, { mData: 'createdBy', sWidth: "116px;" }
+			]
+		} );
+	$JQ("#queryInternalNote").keyup( function () {
+		noteTab.fnFilter($JQ("#queryInternalNote")[0].value);
+	 });
+}; */
+
 </script>

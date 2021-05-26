@@ -7,7 +7,9 @@
 <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-grid.css">
 <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-reboot.css">
 <link rel="stylesheet" href="css/common.css">
-<script type="text/javascript">
+<script src="/js/jquery/jquery.js"></script>
+<link rel="stylesheet" href="/js/datatable/datatables.min.css">
+<script type="/js/datatable/datatables.min.js">
 $.fn.serializeObject = function() {
 	var o = {};
 	var a = this.serializeArray();

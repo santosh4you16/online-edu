@@ -3,7 +3,9 @@
 <%@ page import="org.springframework.security.core.context.SecurityContext" %>
 <%@ page import="org.springframework.security.core.Authentication" %>
 <%@ page import="com.onlineedu.model.UserModel" %>
+<%@ page import="com.onlineedu.model.RoleModel" %>
 <%@page import="com.onlineedu.service.CustomUserDetails"%>
+<%@ page import="java.util.Set" %>
 
 
 <%
@@ -29,9 +31,22 @@ UserModel user = userDetails.getUserModel();
         <li class="nav-item">
           <a class="nav-link" href="#">About</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Services</a>
-        </li>
+        <%
+        	Set<RoleModel> roleObject = user.getRoles();
+        	for( RoleModel role: roleObject ){
+        	   // System.out.println(role.getId());
+        	    if( role.getId() != 3 ) {
+        %>
+	        <li class="nav-item dropdown">
+		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		          Tools
+		        </a>
+		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+		          <a class="dropdown-item" href="${path}/createQuestion">Add Question</a>
+		          <a class="dropdown-item" href="${path}/createTestType">Create Test Type</a>
+		        </div>
+	       </li>
+       <% } } %>
         <li class="nav-item">
           <a class="nav-link" href="#">Contact</a>
         </li>

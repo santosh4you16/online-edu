@@ -52,6 +52,7 @@ public class UserController extends AbstractController {
                 || user.getPassword().isEmpty()) {
                 throw new Exception("username or password cant be null");
             }
+            
             // encrypting the password
             user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 
@@ -60,9 +61,9 @@ public class UserController extends AbstractController {
             Set<RoleModel> roleset = new HashSet<>();
             roleset.add(roles);
             user.setRoles(roleset);
-
             // saving user
             UserModel umodel = userService.registeruser(user);
+            
             if (umodel == null) {
                 throw new Exception("Registration failed!");
             }
@@ -86,7 +87,6 @@ public class UserController extends AbstractController {
             } else {
                 throw new Exception("Something went wrong");
             }
-
         } catch (Exception e) {
             e.printStackTrace();
             generateJsonError(response, e.getMessage());
