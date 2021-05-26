@@ -9,7 +9,9 @@
 <link rel="stylesheet" href="css/common.css">
 <script src="/js/jquery/jquery.js"></script>
 <link rel="stylesheet" href="/js/datatable/datatables.min.css">
-<script type="/js/datatable/datatables.min.js">
+<script type="/js/datatable/datatables.min.js"></script>
+
+<script>
 $.fn.serializeObject = function() {
 	var o = {};
 	var a = this.serializeArray();
@@ -25,4 +27,5 @@ $.fn.serializeObject = function() {
 	});
 	return o;
 };
+
 </script>
